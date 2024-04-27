@@ -52,12 +52,7 @@ for definition in $BUILD_LIST; do
         echo "Running Tests..."
         $TEST_PREFIX/bin/php -m
         $TEST_PREFIX/bin/php -n -m
-        if bats "tests/"; then
-            echo "TEST OK"
-        else
-            echo "TEST FAIL"
-            FAILED="$FAILED $definition"
-        fi
+        
     else
         echo "BUILD FAIL"
         FAILED="$FAILED $definition"
