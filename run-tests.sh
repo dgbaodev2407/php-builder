@@ -1,13 +1,14 @@
 #!/usr/bin/env bash
 
 # Update this when a new stable version comes around
-STABLE_DEFINITIONS="5.3.29 5.4.45 5.5.38 5.6.40 7.0.33 7.1.33 7.2.34 7.3.33 7.4.33 8.0.30 8.1.28 8.2.18 8.3.6"
+STABLE_DEFINITIONS="5.3.29 5.4.45 5.5.38 5.6.40 7.0.33 7.1.33 7.2.34 7.3.33 7.4.33 8.0.30 8.1.28 8.2.18 8.3.6 phpbinary-8.3.4"
 
 TIME="$(date "+%Y%m%d%H%M%S")"
 
 DEFINITIONS="$(./bin/php-build --definitions)"
 
-BUILD_PREFIX="/tmp/php-build-test-$TIME"
+#BUILD_PREFIX="/tmp/php-build-test-$TIME"
+BUILD_PREFIX="/tmp/phpbinary"
 BUILD_LIST=
 FAILED=
 
@@ -40,16 +41,17 @@ echo
 
 for definition in $BUILD_LIST; do
     echo -n "Building '$definition'..."
-    if ./bin/php-build "$definition" "$BUILD_PREFIX/$definition"; then
+    if ./bin/php-build "$definition" "$BUILD_PREFIX"; then
         echo "BUILD OK"
 
-        export TEST_PREFIX="$BUILD_PREFIX/$definition"
+        export TEST_PREFIX="$BUILD_PREFIX"
         export DEFINITION_CONFIG=$(./bin/php-build --definition "$definition")
         export PHP_MINOR_VERSION=${definition%.*}
         export PHP_MAJOR_VERSION=${definition:0:1}
 
         echo "Running Tests..."
-
+        $TEST_PREFIX/bin/php -m
+        $TEST_PREFIX/bin/php -n -m
         if bats "tests/"; then
             echo "TEST OK"
         else
