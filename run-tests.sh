@@ -62,7 +62,7 @@ done
 [ -n "$TRAVIS" ] && kill %1 #https://github.com/php-build/php-build/issues/134
 
 if [ -z "$FAILED" ]; then
-    rm -rf "$BUILD_PREFIX"
+    echo "Done"
 else
     echo "Build fail."
     echo "Failed Definitions:$FAILED"

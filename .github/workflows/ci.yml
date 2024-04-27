@@ -46,7 +46,8 @@ jobs:
             cat /tmp/php-build.*.log
             exit 1
           fi
-          tar -zcf "/tmp/phpbinary-8.3.4-${{ matrix.distro }}.tar.gz" /tmp/phpbinary/bin/php
+          cd /tmp/phpbinary/bin/ && tar -zcf "/tmp/phpbinary-8.3.4-${{
+          matrix.distro }}.tar.gz" php && cd -
       - name: Upload PACKAGES to Google Drive
         uses: Jodebu/upload-to-drive@master
         with:
