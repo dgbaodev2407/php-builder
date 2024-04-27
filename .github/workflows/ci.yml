@@ -16,12 +16,12 @@ jobs:
           - 'ubuntu:22.04'
         exclude:
           # PHP 5.2
-          - { distro: 'centos:7', php: 'phpbinary-8.3.4'}
-          - { distro: 'rockylinux:8', php: 'phpbinary-8.3.4'}
-          - { distro: 'rockylinux:9', php: 'phpbinary-8.3.4'}
-          - { distro: 'ubuntu:18.04', php: 'phpbinary-8.3.4'}
-          - { distro: 'ubuntu:20.04', php: 'phpbinary-8.3.4'}
-          - { distro: 'ubuntu:22.04', php: 'phpbinary-8.3.4'}
+          - { distro: 'centos:7'}
+          - { distro: 'rockylinux:8'}
+          - { distro: 'rockylinux:9'}
+          - { distro: 'ubuntu:18.04'}
+          - { distro: 'ubuntu:20.04'}
+          - { distro: 'ubuntu:22.04'}
 
     name: "PHPBinary (phpbinary-8.3.4, ${{ matrix.distro }})"
     container: "${{ matrix.distro }}"
