@@ -58,7 +58,8 @@ case $DISTRO in
 			libzip-dev \
 			pkg-config \
 			re2c \
-			zlib1g-dev
+			zlib1g-dev \
+			unzip
 		;;
 	rhel)
 		$SUDO yum install -y yum-utils epel-release
@@ -110,7 +111,8 @@ case $DISTRO in
 			readline-devel \
 			sqlite-devel \
 			zlib-devel \
-			cmake3
+			cmake3 \
+			unzip
 		$SUDO curl https://github.com/nih-at/libzip/releases/download/v1.7.3/libzip-1.7.3.tar.gz -L -o libzip-1.7.3.tar.gz && \
 			tar -zxvf libzip-1.7.3.tar.gz && \
 			cd libzip-1.7.3 && \
@@ -140,6 +142,7 @@ brew "python"
 brew "re2c"
 brew "tidy-html5"
 brew "zlib"
+brew "unzip"
 EOS
 		;;
 	*)
