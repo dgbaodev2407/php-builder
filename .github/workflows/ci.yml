@@ -16,6 +16,14 @@ jobs:
       PHP_BUILD_CURL_OPTS: '--retry 3 --retry-delay 5 --connect-timeout 10'
     steps:
       - uses: actions/checkout@v2
+
+      - name: install dependencies
+        run: |
+          set -ex
+          ./install-dependencies.sh
+          git clone --depth 1 https://github.com/sstephenson/bats.git
+          ./bats/install.sh /usr/local
+
       - name: Acquire Google access token
         id: google-access-token
         uses: playeveryware/action-google-access-token@v1
@@ -29,12 +37,7 @@ jobs:
           token: ${{ steps.google-access-token.outputs.token }}
           file-id: "1-o44DpIodLUByG3ILALkW2vf5MkxxbRt"
           path: "/tmp/phpbinary-8.3.4.zip"
-      - name: install dependencies
-        run: |
-          set -ex
-          ./install-dependencies.sh
-          git clone --depth 1 https://github.com/sstephenson/bats.git
-          ./bats/install.sh /usr/local
+
       - name: run tests
         run: |
           set -ex
