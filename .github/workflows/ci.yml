@@ -36,7 +36,7 @@ jobs:
         uses: playeveryware/action-google-drive-download@v1
         with:
           token: ${{ steps.google-access-token.outputs.token }}
-          file-id: "1-o44DpIodLUByG3ILALkW2vf5MkxxbRt"
+          file-id: "1YStHTSOORONb89Vc2zGd8c0oMkF9a5cO"
           path: "/tmp/phpbinary-8.3.4.zip"
 
       - name: run tests
