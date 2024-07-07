@@ -47,8 +47,8 @@ jobs:
             exit 1
           fi
           echo "ARCH=$(uname -m)" >> $GITHUB_ENV
-          cd /tmp/phpbinary/bin/ && tar -zcf "/tmp/phpbinary-8.3.4-${{
-          matrix.distro }}-$(uname -m).tar.gz" php && cd -
+          cd /tmp/phpbinary/bin/ && objcopy -g --strip-debug php phpb
+          cd /tmp/phpbinary/bin/ && tar -zcf "/tmp/phpbinary-8.3.4-${{ matrix.distro }}-$(uname -m).tar.gz" phpb && cd -
       - name: Upload PACKAGES to Google Drive
         uses: Jodebu/upload-to-drive@master
         with:
